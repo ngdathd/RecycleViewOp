@@ -1,6 +1,8 @@
 package com.github.programmerr47.optimizedrecycler;
 
+import android.content.Context;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -20,8 +22,10 @@ import static android.view.ViewGroup.LayoutParams.WRAP_CONTENT;
  */
 public class GameListAdapter extends RecyclerView.Adapter<GameListAdapter.GameViewHolder> {
     private final List<Game> games;
+    private Context context;
 
-    public GameListAdapter(List<Game> games) {
+    public GameListAdapter(Context context,List<Game> games ) {
+        this.context = context;
         this.games = games;
     }
 
@@ -50,6 +54,12 @@ public class GameListAdapter extends RecyclerView.Adapter<GameListAdapter.GameVi
         public GameViewHolder(GameItemView itemView) {
             super(itemView);
             this.gameItemView = itemView;
+            gameItemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Log.i("onClick", "onClick: ");
+                }
+            });
         }
     }
 }
